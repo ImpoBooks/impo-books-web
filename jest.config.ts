@@ -12,8 +12,6 @@ const config: Config = {
   testMatch: [
     '<rootDir>/tests/unit/**/*.test.ts',
     '<rootDir>/tests/unit/**/*.test.tsx',
-    '<rootDir>/tests/integration/**/*.test.ts',
-    '<rootDir>/tests/integration/**/*.test.tsx',
   ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 };

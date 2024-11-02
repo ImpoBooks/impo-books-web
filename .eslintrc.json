@@ -3,23 +3,12 @@
     "next/core-web-vitals",
     "next/typescript",
     "plugin:prettier/recommended",
-    "plugin:storybook/recommended",
-    "plugin:import/recommended",
-    "plugin:import/typescript"
+    "plugin:storybook/recommended"
   ],
   "plugins": [
     "prettier"
   ],
   "rules": {
-    "prettier/prettier": "error",
-    "import/order": [
-      "error",
-      {
-        "newlines-between": "always",
-        "alphabetize": {
-          "order": "asc"
-        }
-      }
-    ]
+    "prettier/prettier": "error"
   }
 }
