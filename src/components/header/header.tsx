@@ -3,7 +3,9 @@ import Link from 'next/link';
 
 import Navigation from './navigation';
 
+import ProfileButton from '@/components/header/profile-button';
 import { Button } from '@/components/ui/button';
+import Routes from '@/constants/routes';
 
 const Header = () => {
   return (
@@ -21,9 +23,7 @@ const Header = () => {
           </div>
           <div className="flex gap-8">
             <Navigation />
-            <Link className="hidden sm:block" href="/auth">
-              <Button>Увійти</Button>
-            </Link>
+            <ProfileButton className="hidden sm:flex" />
           </div>
         </div>
       </div>

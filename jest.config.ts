@@ -15,6 +15,7 @@ const config: Config = {
     '<rootDir>/tests/integration/**/*.test.ts',
     '<rootDir>/tests/integration/**/*.test.tsx',
   ],
+  testPathIgnorePatterns: ['<rootDir>/tests/**/*.pw.test.ts'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 };
 

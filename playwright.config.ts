@@ -1,5 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
+import env from '@/lib/env';
+
 export default defineConfig({
   testDir: './tests',
   testIgnore: ['**/unit/**', '**/integration/**'],
@@ -9,7 +11,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: process.env.BASE_URL || 'http://localhost:3000',
+    baseURL: env.BASE_URL || 'http://localhost:3000',
     trace: 'on-first-retry',
   },
   projects: [
@@ -28,7 +30,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'npm run dev',
-    url: 'http://localhost:3000',
+    url: env.BASE_URL || 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
   },
 });
