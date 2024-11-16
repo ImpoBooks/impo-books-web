@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';

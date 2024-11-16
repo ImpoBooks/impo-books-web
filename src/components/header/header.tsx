@@ -4,8 +4,6 @@ import Link from 'next/link';
 import Navigation from './navigation';
 
 import ProfileButton from '@/components/header/profile-button';
-import { Button } from '@/components/ui/button';
-import Routes from '@/constants/routes';
 
 const Header = () => {
   return (
