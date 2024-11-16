@@ -44,7 +44,11 @@ const SignInForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleLogin)} className="space-y-4">
+    <form
+      onSubmit={handleSubmit(handleLogin)}
+      className="space-y-4"
+      role="form"
+    >
       <Input
         label="Email"
         id="login-email"
@@ -66,6 +70,7 @@ const SignInForm = () => {
         isLoading={isSubmitting}
         type="submit"
         className="w-full"
+        data-testid="login-submit"
       >
         Увійти
       </Button>

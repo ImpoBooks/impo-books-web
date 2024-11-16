@@ -36,10 +36,13 @@ const SignUpForm = () => {
     const { fullName, password, email } = data;
 
     try {
-      await AuthAPI.register(email, fullName, password);
-      const user = await AuthAPI.getMe();
-      setUser(user.data);
-      replace(Routes.CATALOG);
+      const res = await AuthAPI.register(email, fullName, password);
+      if (res.status === 201) {
+        await AuthAPI.login(email, password);
+        const user = await AuthAPI.getMe();
+        setUser(user.data);
+        replace(Routes.CATALOG);
+      }
     } catch {
       toast({
         title: 'Помилка при створенні аккаунту',
@@ -50,7 +53,11 @@ const SignUpForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleRegister)} className="space-y-4">
+    <form
+      onSubmit={handleSubmit(handleRegister)}
+      className="space-y-4"
+      role="form"
+    >
       <Input
         label="Ім'я"
         id="fullName"
@@ -91,6 +98,7 @@ const SignUpForm = () => {
         isLoading={isSubmitting}
         type="submit"
         className="w-full"
+        data-testid="register-submit"
       >
         Зареєструватися
       </Button>

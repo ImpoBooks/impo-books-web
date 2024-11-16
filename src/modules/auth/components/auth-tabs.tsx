@@ -8,8 +8,8 @@ import SignUpForm from '@/modules/auth/components/sign-up-form';
 const AuthTabs = () => {
   const [tab, setTab] = useQueryState('tab');
 
-  const handleTabChange = async (value: string) => {
-    await setTab(value, { shallow: false });
+  const handleTabChange = (value: string) => {
+    setTab(value, { shallow: false });
   };
 
   return (
@@ -19,8 +19,12 @@ const AuthTabs = () => {
       className="w-full"
     >
       <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="login">Вхід</TabsTrigger>
-        <TabsTrigger value="register">Реєстрація</TabsTrigger>
+        <TabsTrigger value="login" data-testid="login">
+          Вхід
+        </TabsTrigger>
+        <TabsTrigger value="register" data-testid="register">
+          Реєстрація
+        </TabsTrigger>
       </TabsList>
       <TabsContent value="login">
         <SignInForm />

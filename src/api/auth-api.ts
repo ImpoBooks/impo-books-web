@@ -5,6 +5,7 @@ class AuthAPI {
   async register(email: string, fullName: string, password: string) {
     return await api.post('/users/register', {
       body: { email, password, fullName },
+      withCredentials: true,
     });
   }
 
