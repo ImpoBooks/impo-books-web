@@ -4,7 +4,7 @@ import React from 'react';
 
 import { Button } from '@/components/ui/button';
 import { SheetContent } from '@/components/ui/sheet';
-import { useCartStore } from '@/hooks/store/store';
+import { useCartStore } from '@/hooks/store/use-cart-store';
 
 const CartPopup = () => {
   const cart = useCartStore();

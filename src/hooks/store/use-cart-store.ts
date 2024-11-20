@@ -19,7 +19,7 @@ export const useCartStore = create<CartState>((set) => ({
   cartItems: [
     {
       book: {
-        id: 1,
+        id: '1',
         name: "The Minimalist's Guide to Life",
         price: 15.99,
       },
@@ -27,7 +27,7 @@ export const useCartStore = create<CartState>((set) => ({
     },
     {
       book: {
-        id: 2,
+        id: '2',
         name: 'Zen and the Art of Minimalism',
         price: 12.99,
       },
@@ -35,7 +35,7 @@ export const useCartStore = create<CartState>((set) => ({
     },
     {
       book: {
-        id: 3,
+        id: '3',
         name: 'Less is More: A Novel',
         price: 9.99,
       },

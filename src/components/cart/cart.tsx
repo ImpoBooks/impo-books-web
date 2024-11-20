@@ -6,7 +6,7 @@ import React from 'react';
 import CartPopup from '@/components/cart/cart-popup';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetTrigger } from '@/components/ui/sheet';
-import { useCartStore } from '@/hooks/store/store';
+import { useCartStore } from '@/hooks/store/use-cart-store';
 
 const Cart = () => {
   const pathname = usePathname();

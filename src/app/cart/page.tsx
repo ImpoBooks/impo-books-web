@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useCartStore } from '@/hooks/store/store';
+import { useCartStore } from '@/hooks/store/use-cart-store';
 
 export default function CartCheckoutPage() {
   const cart = useCartStore();
