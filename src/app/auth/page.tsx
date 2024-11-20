@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
 
 import AuthPage from '@/modules/auth/auth-page';
 
@@ -21,7 +21,9 @@ export const generateMetadata = async ({
 const Auth: FC<AuthProps> = () => {
   return (
     <div className="h-[80%] grid place-items-center">
-      <AuthPage />
+      <Suspense fallback={<div>Loading...</div>}>
+        <AuthPage />
+      </Suspense>
     </div>
   );
 };

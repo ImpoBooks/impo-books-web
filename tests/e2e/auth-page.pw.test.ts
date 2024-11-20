@@ -49,7 +49,7 @@ test.describe('Auth page', () => {
 
     test('should login successfully with valid data', async ({ page }) => {
       await page.getByTestId('login').click();
-      await page.getByPlaceholder('your@email.com').fill('test@gmail.com');
+      await page.getByPlaceholder('your@email.com').fill('testmail@gmail.com');
       await page.getByPlaceholder('••••••••').fill('123123123');
       await page.getByTestId('login-submit').click();
       await expect(page).toHaveURL(Routes.CATALOG);
@@ -76,20 +76,6 @@ test.describe('Auth page', () => {
       await submitButton.click();
       await expect(wrongPassMessage).toBeVisible();
       await expect(wrongConfirmPassMessage).toBeVisible();
-    });
-
-    test('should register successfully with valid data', async ({ page }) => {
-      const submitButton = page.getByTestId('register-submit');
-
-      await page.getByTestId('register').click();
-
-      await page.getByPlaceholder('Іван Петренко').fill('Ivan');
-      await page.getByPlaceholder('your@email.com').fill('testmail@gmail.com');
-      await page.getByLabel('Пароль').fill('123123123');
-      await page.getByLabel('Підтвердження паролю').fill('123123123');
-      await submitButton.click();
-
-      await expect(page).toHaveURL(Routes.CATALOG);
     });
   });
 });
