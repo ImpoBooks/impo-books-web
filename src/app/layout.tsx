@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import '../theme/globals.css';
+import Cart from '@/components/cart/cart';
 import Header from '@/components/header/header';
 import Providers from '@/lib/providers';
 import inter from '@/theme/fonts/inter';
@@ -28,6 +29,7 @@ export default function RootLayout({
           <main className="max-w-screen-2xl h-full flex-1 mx-auto mt-4 px-4 sm:px-6 lg:px-8">
             {children}
           </main>
+          <Cart />
         </Providers>
       </body>
     </html>
