@@ -1,10 +1,6 @@
 import { create } from 'zustand';
 
-import { Book } from '@/types';
-type CartItem = {
-  book: Book;
-  count: number;
-};
+import { CartItem } from '@/types/book';
 
 type CartState = {
   cartItems: CartItem[];
