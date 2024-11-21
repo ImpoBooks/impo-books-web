@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Structure of the Project
 
-## Getting Started
+```plaintext
+.
+├── public/
+│ ├── images // for bitmap images
+│ └── icons // small images as usual that's the svgs
+└── src/
+├── app/
+│ ├── // other different pages
+│ ├── page.tsx
+│ ├── layout.tsx
+│ ├── error.tsx
+│ └── not-found.tsx
+├── api/
+│ ├── actions // for server actions
+│ ├── user-api.ts
+│ └── // there will be files with fetch functions
+├── components/
+│ ├── ui // components from schadcn and ui-kit
+│ ├── header.tsx
+│ └── // other components
+├── constants/
+│ ├── index.ts
+│ └── // can be different files related to entities
+├── contexts/
+│ └── user-context.ts
+├── hooks/
+│ └── use-user.ts
+├── lib/
+│ ├── metadata ?/
+│ │ └── home-metadata.ts
+│ ├── validations/
+│ │ └── auth.ts
+│ ├── db.ts
+│ ├── api.ts
+│ └── config.ts // for .env imports
+├── modules/
+│ ├── // for each page we create module
+│ └── home/
+│ ├── components/
+│ │ └── home-card.tsx
+│ ├── constants ?
+│ ├── types ?
+│ ├── utils ?
+│ └── home-page.tsx
+├── store ?/
+│ ├── actions
+│ └── store.tsx
+├── theme/
+│ ├── fonts/
+│ │ └── our-font.ts
+│ └── global.css
+├── types/
+│ ├── user.ts // types related to user
+│ └── index.ts // gloabal types
+├── utils/
+│ └── user-utils.ts
+└── tests/
+└── user-utils.test.ts
+```
 
-First, run the development server:
+## Our team
+
+- **Бондаренко Олександр** - Teamlead, Back End Developer
+- **Горчинський Назарій** - Back End Developer
+- **Титянюк Артем** - Front End Developer
+- **Рибалко Максим** - Full-stack Developer
+- **Новиков Ігор** - Front End Developer, UI/UX
+
+## Run project
+
+1. Clone this repository:
+
+```bash
+git clone https://github.com/ImpoBooks/impo-books-web.git
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open the project in your browser on port 3000:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Running Tests
 
-## Learn More
+### Unit and Integration tests with Jest
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run test
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### End-to-end tests with Playwright
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run test:playwright
+```
