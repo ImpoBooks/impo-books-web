@@ -1,3 +1,5 @@
+'use client';
+
 import { Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,6 +14,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import Routes from '@/constants/routes';
+import { useCartStore } from '@/hooks/store/use-cart-store';
 import { Book } from '@/types/book';
 
 interface BookCardProps {
@@ -19,6 +22,12 @@ interface BookCardProps {
 }
 
 const BookCard: FC<BookCardProps> = ({ book }) => {
+  const { addToCart } = useCartStore();
+
+  const handleQuickAdd = () => {
+    addToCart({ book, count: 1 });
+  };
+
   return (
     <Card key={book.id}>
       <Image
@@ -54,7 +63,9 @@ const BookCard: FC<BookCardProps> = ({ book }) => {
         <p className="mt-2 text-lg font-bold">${book.price.toFixed(2)}</p>
       </CardContent>
       <CardFooter className="flex gap-2 flex-wrap">
-        <Button variant="outline">Додати в кошик</Button>
+        <Button onClick={handleQuickAdd} variant="outline">
+          Додати в кошик
+        </Button>
         <Link href={Routes.BOOKS + `/${book.id}`}>
           <Button>Детальніше</Button>
         </Link>
