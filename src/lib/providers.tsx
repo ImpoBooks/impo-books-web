@@ -21,7 +21,7 @@ const Providers: FC<PropsWithChildren> = ({ children }) => {
           setLoading(false);
         });
     }
-  }, [user]);
+  }, [setLoading, setUser, user]);
 
   return (
     <NuqsAdapter>
