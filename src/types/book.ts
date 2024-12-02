@@ -1,13 +1,18 @@
+import { Comment } from '@/types/comment';
+
 export type Book = {
-  id: string;
+  id: number;
   name: string;
-  genre?: string;
-  author?: string;
-  price: number;
-  priceUnits?: string;
-  rating?: number;
-  image?: string;
   description?: string;
+  format?: string;
+  author: string;
+  publisher?: string;
+  genres?: string;
+  releaseDate?: string;
+  rating?: number;
+  price: number;
+  image?: string;
+  comments: Comment[];
 };
 
 export type CartItem = {
