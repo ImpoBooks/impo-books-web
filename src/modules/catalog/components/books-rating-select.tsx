@@ -10,6 +10,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
+const stars = ['3', '4', '4.5'];
+
 const BooksRatingSelect = () => {
   const [minRating, setMinRating] = useQueryState('minRating', {
     shallow: false,
@@ -35,9 +37,11 @@ const BooksRatingSelect = () => {
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="0">Будь-який</SelectItem>
-          <SelectItem value="3">3+ зірок</SelectItem>
-          <SelectItem value="4">4+ зірок</SelectItem>
-          <SelectItem value="4.5">4.5+ зірок</SelectItem>
+          {stars.map((star) => (
+            <SelectItem key={star} value={star}>
+              {star}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
     </div>
