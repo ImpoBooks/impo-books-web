@@ -11,6 +11,7 @@ const BookRating: FC<BookRatingProps> = ({ rating }) => {
       {[...Array(5)].map((_, i) => (
         <Star
           key={i}
+          data-testid={i < Math.floor(rating) ? 'filled-star' : 'empty-star'}
           className={`h-4 w-4 ${
             i < Math.floor(rating || 0) ? 'text-yellow-400' : 'text-gray-300'
           }`}
