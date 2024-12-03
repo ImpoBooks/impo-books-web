@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Genres } from '@/constants/genres';
 
 const BooksGenreSelector = () => {
   const [genre, setGenre] = useQueryState('genre', { shallow: false });
@@ -33,10 +34,11 @@ const BooksGenreSelector = () => {
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="all">Всі жанри</SelectItem>
-          <SelectItem value="Fiction">Fiction</SelectItem>
-          <SelectItem value="Science Fiction">Science Fiction</SelectItem>
-          <SelectItem value="Romance">Romance</SelectItem>
-          <SelectItem value="Fantasy">Fantasy</SelectItem>
+          {Object.values(Genres).map((genre) => (
+            <SelectItem key={genre} value={genre}>
+              {genre}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
     </div>

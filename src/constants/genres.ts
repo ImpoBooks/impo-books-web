@@ -1,4 +1,4 @@
-export enum Genre {
+export enum Genres {
   Adventure = 'Adventure',
   Fantasy = 'Fantasy',
   Psychological = 'Psychological',
