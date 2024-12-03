@@ -2,9 +2,9 @@ import { beforeEach, describe, expect, it } from '@jest/globals';
 import { render, screen } from '@testing-library/react';
 
 import '@testing-library/jest-dom';
-import ContactInfo from '@/components/contacts/contactInfo';
 import { contactItems } from '@/constants/contact-items';
 import { socialLinks } from '@/constants/social-links';
+import ContactInfo from '@/modules/contacts/components/contact-info';
 
 describe('Contact Info Component - Unit Tests', () => {
   beforeEach(() => {
