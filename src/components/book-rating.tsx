@@ -17,7 +17,9 @@ const BookRating: FC<BookRatingProps> = ({ rating }) => {
           }`}
         />
       ))}
-      <span className="ml-1 text-sm text-gray-500">{rating?.toFixed(1)}</span>
+      <span className="ml-1 text-sm text-gray-500" data-testId="rating">
+        {rating?.toFixed(1)}
+      </span>
     </div>
   );
 };

@@ -30,7 +30,10 @@ const BooksGenreSelector = () => {
         defaultValue={genre || undefined}
       >
         <SelectTrigger>
-          <SelectValue placeholder="Виберіть жанр" />
+          <SelectValue
+            data-testId="genre-selector"
+            placeholder="Виберіть жанр"
+          />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="all">Всі жанри</SelectItem>

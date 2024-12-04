@@ -33,7 +33,10 @@ const BooksRatingSelect = () => {
         defaultValue={minRating || undefined}
       >
         <SelectTrigger>
-          <SelectValue placeholder="Виберіть рейтинг" />
+          <SelectValue
+            data-testId="rating-selector"
+            placeholder="Виберіть рейтинг"
+          />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="0">Будь-який</SelectItem>

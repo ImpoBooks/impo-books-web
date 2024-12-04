@@ -38,15 +38,17 @@ const BookCard: FC<BookCardProps> = ({ book }) => {
         className="rounded-t-lg w-full object-cover"
       />
       <CardHeader>
-        <CardTitle>{book.name}</CardTitle>
+        <CardTitle data-testId="title">{book.name}</CardTitle>
       </CardHeader>
       <CardContent>
         <p className="text-sm text-gray-500">{book.author}</p>
-        <p className="text-sm text-gray-500">
-          {new Date().toLocaleDateString()}
+        <p className="text-sm text-gray-500" data-testId="genre">
+          {book.genres}
         </p>
         <BookRating rating={book.rating} />
-        <p className="mt-2 text-lg font-bold">${book.price.toFixed(2)}</p>
+        <p className="mt-2 text-lg font-bold" data-testId="price">
+          ${book.price.toFixed(2)}
+        </p>
       </CardContent>
       <CardFooter className="flex gap-2 flex-wrap">
         <Button onClick={handleQuickAdd} variant="outline">
