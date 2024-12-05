@@ -55,6 +55,7 @@ const ProfileCard = ({ user }: { user: User }) => {
           {profileActionButtons.map(({ id, label, icon: Icon, variant }) => (
             <Button
               key={id}
+              data-testid={id}
               variant={variant}
               onClick={() => setActiveDialog(id)}
               className="w-full"
