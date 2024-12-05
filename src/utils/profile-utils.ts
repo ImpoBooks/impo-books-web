@@ -7,24 +7,18 @@ import { PasswordData } from '@/modules/profile/constants';
 export const handleDeleteProfile = async () => {
   try {
     await ProfileAPI.deleteProfile();
+    return { success: true };
   } catch {
-    toast({
-      title: 'Помилка',
-      description: 'Не вдалося змінити пароль. Спробуйте ще раз.',
-      variant: 'destructive',
-    });
+    return { success: false };
   }
 };
 
 export const handleLogout = async () => {
   try {
     await ProfileAPI.logout();
+    return { success: true };
   } catch {
-    toast({
-      title: 'Помилка',
-      description: 'Не вдалося вийти з профілю. Спробуйте ще раз.',
-      variant: 'destructive',
-    });
+    return { success: false };
   }
 };
 

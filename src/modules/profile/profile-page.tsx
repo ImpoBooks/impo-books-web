@@ -24,6 +24,7 @@ import { profileActionButtons } from '@/constants/profile-action-buttons';
 import { ProfileDialogs } from '@/constants/profile-dialogs';
 import Routes from '@/constants/routes';
 import useUserStore from '@/hooks/store/use-user-store';
+import { toast } from '@/hooks/use-toast';
 import { getNameAbbreviation } from '@/utils/user-utils';
 
 const ProfilePage = () => {
@@ -109,12 +110,20 @@ const ProfilePage = () => {
           confirmLabel={dialog.confirmLabel}
           confirmVariant={dialog.confirmVariant}
           onConfirm={async () => {
-            await dialog.handle();
+            const result = await dialog.handle();
+            if (!result.success) {
+              toast({
+                title: 'Помилка',
+                description: 'Щось пішло не так. Спробуйте ще раз.',
+                variant: 'destructive',
+              });
+            } else {
+              replace(Routes.CATALOG);
+              setTimeout(() => {
+                window.location.reload();
+              }, 100);
+            }
             setActiveDialog(null);
-            replace(Routes.CATALOG);
-            setTimeout(() => {
-              window.location.reload();
-            }, 100);
           }}
         />
       ))}
