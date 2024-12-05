@@ -11,62 +11,49 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { profileFormFields } from '@/constants/profile-form-fields';
 import { handleChangeName } from '@/utils/profile-utils';
 
 const ProfileDataForm = ({ user }: { user: ProfileData }) => {
-  const form = useForm<ProfileData>({
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { isSubmitting, errors },
+  } = useForm<ProfileData>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
       name: user!.name,
     },
   });
 
+  const allFields = watch();
+  const allFieldsFilled = Object.values(allFields).every((value) => value);
+
   return (
     <AccordionItem value="personal-info">
       <AccordionTrigger>Особиста інформація</AccordionTrigger>
       <AccordionContent>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit((values) =>
-              handleChangeName(values.name),
-            )}
-            className="space-y-4"
-          >
-            {profileFormFields.map((field) => (
-              <FormField
-                key={field.id}
-                control={form.control}
-                name={field.name as keyof ProfileData}
-                render={({ field: formField }) => (
-                  <FormItem>
-                    <FormLabel>{field.label}</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...formField}
-                        type={field.type}
-                        required={field.required}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            ))}
-            <Button type="submit" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? 'Оновлення...' : 'Оновити профіль'}
-            </Button>
-          </form>
-        </Form>
+        <form
+          onSubmit={handleSubmit((values) => handleChangeName(values.name))}
+          className="space-y-4"
+          role="form"
+        >
+          {profileFormFields.map((field) => (
+            <Input
+              label={field.label}
+              key={field.id}
+              type={field.type}
+              required={field.required}
+              error={errors[field.id]?.message}
+              {...register(field.id)}
+            />
+          ))}
+          <Button type="submit" disabled={isSubmitting || !allFieldsFilled}>
+            {isSubmitting ? 'Оновлення...' : 'Оновити профіль'}
+          </Button>
+        </form>
       </AccordionContent>
     </AccordionItem>
   );

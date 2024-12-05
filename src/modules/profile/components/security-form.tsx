@@ -11,65 +11,50 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { passwordFormFields } from '@/constants/password-form-fields';
 import { handleChangePassword } from '@/utils/profile-utils';
 
 const SecurityForm = () => {
-  const form = useForm<PasswordData>({
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { isSubmitting, errors },
+  } = useForm<PasswordData>({
     resolver: zodResolver(passwordFormSchema),
-    defaultValues: {
-      newPassword: '',
-      confirmPassword: '',
-    },
+    defaultValues: PasswordData,
   });
+
+  const allFields = watch();
+  const allFieldsFilled = Object.values(allFields).every((value) => value);
 
   return (
     <AccordionItem value="security">
       <AccordionTrigger>Безпека</AccordionTrigger>
       <AccordionContent>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit((values) =>
-              handleChangePassword(values.newPassword, form),
-            )}
-            className="space-y-4"
-          >
-            {passwordFormFields.map((field) => (
-              <FormField
-                key={field.id}
-                control={form.control}
-                name={field.id as keyof PasswordData}
-                render={({ field: formField }) => (
-                  <FormItem>
-                    <FormLabel>{field.label}</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...formField}
-                        type={field.type}
-                        required={field.required}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            ))}
-            <Button type="submit" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting
-                ? 'Зміна паролю...'
-                : 'Змінити пароль'}
-            </Button>
-          </form>
-        </Form>
+        <form
+          onSubmit={handleSubmit((values) => {
+            handleChangePassword(values.newPassword);
+            reset();
+          })}
+          className="space-y-4"
+        >
+          {passwordFormFields.map((field) => (
+            <Input
+              label={field.label}
+              key={field.id}
+              type={field.type}
+              required={field.required}
+              error={errors[field.id]?.message}
+              {...register(field.id)}
+            />
+          ))}
+          <Button type="submit" disabled={isSubmitting || !allFieldsFilled}>
+            {isSubmitting ? 'Зміна паролю...' : 'Змінити пароль'}
+          </Button>
+        </form>
       </AccordionContent>
     </AccordionItem>
   );
