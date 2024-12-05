@@ -29,10 +29,9 @@ import { getNameAbbreviation } from '@/utils/user-utils';
 
 const ProfilePage = () => {
   const { replace } = useRouter();
-  const { user, setUser } = useUserStore((state) => state);
+  const { user } = useUserStore((state) => state);
   const [activeDialog, setActiveDialog] = useState<string | null>(null);
   const nameAbbreviation = getNameAbbreviation(user?.name || '');
-
   return (
     <div className="container mx-auto p-4">
       <div className="flex flex-col lg:flex-row gap-6">
@@ -112,10 +111,13 @@ const ProfilePage = () => {
           description={dialog.description}
           confirmLabel={dialog.confirmLabel}
           confirmVariant={dialog.confirmVariant}
-          onConfirm={() => {
+          onConfirm={async () => {
+            await dialog.handle();
             setActiveDialog(null);
-            setUser(null);
             replace(Routes.CATALOG);
+            setTimeout(() => {
+              window.location.reload();
+            }, 100);
           }}
         />
       ))}

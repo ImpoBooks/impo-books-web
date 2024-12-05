@@ -1,3 +1,5 @@
+import { handleDeleteProfile, handleLogout } from '@/utils/profile-utils';
+
 export const ProfileDialogs = [
   {
     id: 'logout',
@@ -5,6 +7,7 @@ export const ProfileDialogs = [
     description: 'Ви впевнені, що хочете вийти з облікового запису?',
     confirmLabel: 'Вийти',
     confirmVariant: 'default' as const,
+    handle: handleLogout,
   },
   {
     id: 'delete',
@@ -13,5 +16,6 @@ export const ProfileDialogs = [
       'Ви впевнені, що хочете видалити свій обліковий запис? Ця дія є незворотною.',
     confirmLabel: 'Видалити',
     confirmVariant: 'destructive' as const,
+    handle: handleDeleteProfile,
   },
 ];

@@ -1,8 +1,6 @@
-import { UseFormReturn } from 'react-hook-form';
-
+import ProfileAPI from '@/api/profile-api';
 import { toast } from '@/hooks/use-toast';
-import { PasswordData, ProfileData } from '@/modules/profile/constants';
-
+import { ProfileData } from '@/modules/profile/constants';
 export const handleChangeProfileData = (values: ProfileData) => {
   toast({
     title: 'Оновлення профілю',
@@ -11,14 +9,26 @@ export const handleChangeProfileData = (values: ProfileData) => {
   console.log(values);
 };
 
-export const handleChangePassword = (
-  values: PasswordData,
-  form: UseFormReturn<PasswordData>,
-) => {
-  toast({
-    title: 'Зміна паролю',
-    description: 'Пароль змінено!',
-  });
-  form.reset();
-  console.log(values);
+export const handleDeleteProfile = async () => {
+  try {
+    await ProfileAPI.deleteProfile();
+  } catch {
+    toast({
+      title: 'Помилка',
+      description: 'Не вдалося змінити пароль. Спробуйте ще раз.',
+      variant: 'destructive',
+    });
+  }
+};
+
+export const handleLogout = async () => {
+  try {
+    await ProfileAPI.logout();
+  } catch {
+    toast({
+      title: 'Помилка',
+      description: 'Не вдалося вийти з профілю. Спробуйте ще раз.',
+      variant: 'destructive',
+    });
+  }
 };

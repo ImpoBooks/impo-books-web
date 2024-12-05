@@ -8,11 +8,4 @@ type ProfileFormField = {
 
 export const profileFormFields: ProfileFormField[] = [
   { id: 'name', label: "Ім'я", name: 'name', type: 'text', required: true },
-  {
-    id: 'email',
-    label: 'Електронна пошта',
-    name: 'email',
-    type: 'email',
-    required: true,
-  },
 ];
