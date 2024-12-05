@@ -25,8 +25,10 @@ const BookPage: FC<BookPageProps> = ({ book }) => {
         <div className="p-8 bg-card">
           <h2 className="text-2xl font-bold text-primary mb-4">Відгуки</h2>
           <BookReviewForm bookId={book.id} />
-          {book.comments.length > 0 && (
+          {book.comments && book.comments.length > 0 ? (
             <BookCommentSection comments={book.comments} bookId={book.id} />
+          ) : (
+            <p data-testId="no-comments">No comments yet</p>
           )}
         </div>
       </div>

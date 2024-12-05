@@ -12,7 +12,18 @@ type CartState = {
 };
 
 export const useCartStore = create<CartState>((set) => ({
-  cartItems: [],
+  cartItems: [
+    {
+      book: {
+        id: 1,
+        name: 'Sample Book',
+        price: 10,
+        author: 'Maksym Rybalko',
+        comments: [],
+      },
+      count: 2,
+    },
+  ],
   addToCart: (item: CartItem) =>
     set((state) => ({ cartItems: [...state.cartItems, item] })),
   deleteFromCart: (item: CartItem) =>

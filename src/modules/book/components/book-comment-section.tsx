@@ -12,7 +12,7 @@ const BookCommentSection: FC<BookCommentSectionProps> = ({
   bookId,
 }) => {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4" data-testid="comment">
       {comments.map((comment) => (
         <BookComment key={comment.id} comment={comment} bookId={bookId} />
       ))}

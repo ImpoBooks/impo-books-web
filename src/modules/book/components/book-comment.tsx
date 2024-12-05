@@ -67,6 +67,7 @@ const BookComment: FC<BookCommentProps> = ({ comment, bookId }) => {
             {[...Array(5)].map((_, i) => (
               <Star
                 key={i}
+                aria-label="Star"
                 className={`h-4 w-4 ${
                   i < comment.rating
                     ? 'text-yellow-400'

@@ -55,6 +55,8 @@ const BookReviewForm: FC<BookReviewFormProps> = ({ bookId }) => {
             {...field}
             placeholder="Напишіть свій відгук..."
             className="mb-2 h-[100px]"
+            name="review"
+            data-testid="review-form"
           />
         )}
       />
@@ -67,6 +69,7 @@ const BookReviewForm: FC<BookReviewFormProps> = ({ bookId }) => {
             type="button"
             variant={rating === ratingValue ? 'default' : 'outline'}
             size="sm"
+            data-testid={`rating-${ratingValue}`}
             onClick={() => setValue('rating', ratingValue)}
           >
             {ratingValue}
