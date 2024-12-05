@@ -6,7 +6,6 @@ import { useState } from 'react';
 
 import ProfileDataForm from './components/profile-data-form';
 import ProfileDialog from './components/profile-dialog';
-import PurchaseHistory from './components/purchase-history';
 import SecurityForm from './components/security-form';
 
 import { Accordion } from '@/components/ui/accordion';
@@ -89,11 +88,9 @@ const ProfilePage = () => {
               >
                 <ProfileDataForm user={user} />
                 <SecurityForm />
-                <PurchaseHistory />
               </Accordion>
             ) : (
               <div className="space-y-4">
-                <Skeleton className="h-12 w-full" />
                 <Skeleton className="h-12 w-full" />
                 <Skeleton className="h-12 w-full" />
               </div>
