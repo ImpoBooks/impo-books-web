@@ -43,6 +43,7 @@ const ProfileDataForm = ({ user }: { user: ProfileData }) => {
           {profileFormFields.map((field) => (
             <Input
               label={field.label}
+              id={field.label}
               key={field.id}
               type={field.type}
               required={field.required}
