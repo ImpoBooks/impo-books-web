@@ -1,9 +1,5 @@
 import { z } from 'zod';
 
-export const ProfileData = {
-  name: '',
-};
-
 export const PasswordData = {
   newPassword: '',
   confirmPassword: '',

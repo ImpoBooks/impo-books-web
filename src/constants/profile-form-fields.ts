@@ -1,7 +1,7 @@
 type ProfileFormField = {
   id: string;
   label: string;
-  name: 'name' | 'email' | 'phone'; // Explicitly define allowed field names
+  name: string;
   type: string;
   required: boolean;
 };

@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 
 import { ProfileData, profileFormSchema } from '../constants';
 
-import ProfileAPI from '@/api/profile-api';
 import {
   AccordionContent,
   AccordionItem,
@@ -22,7 +21,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { profileFormFields } from '@/constants/profile-form-fields';
-import { toast } from '@/hooks/use-toast';
+import { handleChangeName } from '@/utils/profile-utils';
 
 const ProfileDataForm = ({ user }: { user: ProfileData }) => {
   const form = useForm<ProfileData>({
@@ -38,18 +37,9 @@ const ProfileDataForm = ({ user }: { user: ProfileData }) => {
       <AccordionContent>
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit(async (values) => {
-              try {
-                await ProfileAPI.changeName(values.name);
-                window.location.reload();
-              } catch {
-                toast({
-                  title: 'Помилка',
-                  description: 'Не вдалося змінити ім`я. Спробуйте ще раз.',
-                  variant: 'destructive',
-                });
-              }
-            })}
+            onSubmit={form.handleSubmit((values) =>
+              handleChangeName(values.name),
+            )}
             className="space-y-4"
           >
             {profileFormFields.map((field) => (

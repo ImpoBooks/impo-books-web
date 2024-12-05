@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 
 import { PasswordData, passwordFormSchema } from '../constants';
 
-import ProfileAPI from '@/api/profile-api';
 import {
   AccordionContent,
   AccordionItem,
@@ -22,7 +21,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { passwordFormFields } from '@/constants/password-form-fields';
-import { toast } from '@/hooks/use-toast';
+import { handleChangePassword } from '@/utils/profile-utils';
+
 const SecurityForm = () => {
   const form = useForm<PasswordData>({
     resolver: zodResolver(passwordFormSchema),
@@ -38,23 +38,9 @@ const SecurityForm = () => {
       <AccordionContent>
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit(async (values) => {
-              try {
-                await ProfileAPI.changePassword(values.newPassword);
-                form.reset();
-                toast({
-                  title: 'Успішно',
-                  description: 'Ваш пароль було змінено!',
-                  variant: 'default',
-                });
-              } catch {
-                toast({
-                  title: 'Помилка',
-                  description: 'Не вдалося змінити пароль. Спробуйте ще раз.',
-                  variant: 'destructive',
-                });
-              }
-            })}
+            onSubmit={form.handleSubmit((values) =>
+              handleChangePassword(values.newPassword, form),
+            )}
             className="space-y-4"
           >
             {passwordFormFields.map((field) => (
