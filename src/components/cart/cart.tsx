@@ -17,7 +17,10 @@ const Cart = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="fixed bottom-4 right-4 z-10">
+        <Button
+          className="fixed bottom-4 right-4 z-10"
+          data-testid="cart-count"
+        >
           <ShoppingCart className="mr-2 h-4 w-4" />
           Кошик ({cart.cartItems.reduce((sum, item) => sum + item.count, 0)})
         </Button>

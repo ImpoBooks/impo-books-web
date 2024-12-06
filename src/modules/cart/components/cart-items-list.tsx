@@ -9,12 +9,14 @@ interface CartItemsProps {
 }
 const CartItemsList: FC<CartItemsProps> = ({ cartItems, total }) => {
   return (
-    <div>
+    <div data-testid="cart-items-list">
       {cartItems.map((item) => (
         <CartItemField item={item} key={item.book.id} />
       ))}
       <div className="mt-6 text-right">
-        <p className="text-lg font-semibold">Сума: ${total.toFixed(2)}</p>
+        <p className="text-lg font-semibold" data-testid="cart-total">
+          Сума: ${total.toFixed(2)}
+        </p>
       </div>
     </div>
   );

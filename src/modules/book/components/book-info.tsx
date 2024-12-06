@@ -28,9 +28,16 @@ const BookInfo: FC<BookInfoProps> = ({ book, onBookAddition }) => {
             {book.genres}
           </div>
         )}
-        <h1 className="mt-1 text-4xl font-bold text-primary">{book.name}</h1>
-        <p className="mt-2 text-muted-foreground">by {book.author}</p>
-        {book.rating && (
+        <h1
+          className="mt-1 text-4xl font-bold text-primary"
+          data-testid="book-name"
+        >
+          {book.name}
+        </h1>
+        <p className="mt-2 text-muted-foreground" data-testid="book-author">
+          by {book.author}
+        </p>
+        {(book.rating || typeof book.rating === 'number') && (
           <div className="mt-4 flex items-center">
             {[...Array(5)].map((_, i) => (
               <Star
@@ -51,13 +58,19 @@ const BookInfo: FC<BookInfoProps> = ({ book, onBookAddition }) => {
           ${book.price.toFixed(2)}
         </p>
         {book.description && (
-          <p className="mt-2 text-muted-foreground">{book.description}</p>
+          <p
+            className="mt-2 text-muted-foreground"
+            data-testid="book-description"
+          >
+            {book.description}
+          </p>
         )}
         <div className="mt-4 flex space-x-4">
           <Button
             variant="outline"
             className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
             onClick={handleCartAddition}
+            data-testid="add-to-cart"
           >
             Додати в кошик
           </Button>

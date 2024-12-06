@@ -33,14 +33,31 @@ const CartItemField: FC<CartItemProps> = ({ item }) => {
         <p className="text-sm text-gray-600">${item.book.price.toFixed(2)}</p>
       </div>
       <div className="flex items-center space-x-2">
-        <Button variant="outline" size="icon" onClick={onDecrementClick}>
+        <Button
+          variant="outline"
+          size="icon"
+          aria-label="Decrement"
+          onClick={onDecrementClick}
+        >
           <Minus className="h-4 w-4" />
         </Button>
-        <span className="w-8 text-center">{item.count}</span>
-        <Button variant="outline" size="icon" onClick={onIncrementClick}>
+        <span className="w-8 text-center" data-testId="cart-item">
+          {item.count}
+        </span>
+        <Button
+          variant="outline"
+          size="icon"
+          aria-label="Increment"
+          onClick={onIncrementClick}
+        >
           <Plus className="h-4 w-4" />
         </Button>
-        <Button variant="outline" size="icon" onClick={onDeleteClick}>
+        <Button
+          variant="outline"
+          size="icon"
+          aria-label="Delete"
+          onClick={onDeleteClick}
+        >
           <Trash2 className="h-4 w-4" />
         </Button>
       </div>
