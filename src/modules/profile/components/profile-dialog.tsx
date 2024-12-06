@@ -38,7 +38,11 @@ const ProfileDialog = ({
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Скасувати
           </Button>
-          <Button variant={confirmVariant} onClick={onConfirm}>
+          <Button
+            data-testid="confirm"
+            variant={confirmVariant}
+            onClick={onConfirm}
+          >
             {confirmLabel}
           </Button>
         </DialogFooter>

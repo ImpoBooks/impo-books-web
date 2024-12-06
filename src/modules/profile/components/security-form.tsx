@@ -59,10 +59,12 @@ const SecurityForm = () => {
             reset();
           })}
           className="space-y-4"
+          role="form"
         >
           {passwordFormFields.map((field) => (
             <Input
               label={field.label}
+              id={field.label}
               key={field.id}
               type={field.type}
               required={field.required}

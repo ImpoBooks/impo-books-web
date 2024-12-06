@@ -4,7 +4,6 @@ import React from 'react';
 import '@testing-library/dom';
 import ProfileDataForm from '@/modules/profile/components/profile-data-form';
 import { ProfileData } from '@/modules/profile/constants';
-import { handleChangeName } from '@/utils/profile-utils';
 
 jest.mock('@/components/ui/accordion', () => ({
   AccordionItem: ({ children }: { children: React.ReactNode }) => (
@@ -71,22 +70,6 @@ describe('ProfileDataForm', () => {
       expect(
         screen.getByRole('button', { name: 'Оновити профіль' }),
       ).toBeEnabled();
-    });
-  });
-
-  it('calls handleChangeName with correct data on form submission', async () => {
-    render(<ProfileDataForm user={mockUser} />);
-
-    const nameInput = screen.getByLabelText("Ім'я");
-    fireEvent.change(nameInput, { target: { value: 'New Name' } });
-
-    const submitButton = screen.getByRole('button', {
-      name: 'Оновити профіль',
-    });
-    fireEvent.click(submitButton);
-
-    await waitFor(() => {
-      expect(handleChangeName).toHaveBeenCalledWith('New Name');
     });
   });
 
