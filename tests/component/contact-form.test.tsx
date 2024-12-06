@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
-import ContactForm from '@/components/contacts/contactForm';
 import { formItems } from '@/constants/form-items';
+import ContactForm from '@/modules/contacts/components/contact-form';
 
 describe('Contact Form Component - Unit Tests', () => {
   it('should render all form fields with correct labels, ids, placeholders', () => {

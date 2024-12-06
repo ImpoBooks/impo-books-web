@@ -19,7 +19,7 @@ const BookPage: FC<BookPageProps> = ({ book }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/10 to-secondary/10 p-8">
+    <div className="min-h-screen">
       <div className="max-w-screen-xl mx-auto bg-card text-card-foreground rounded-lg shadow-lg overflow-hidden">
         <BookInfo book={book} onBookAddition={handleAddToCart} />
         <div className="p-8 bg-card">

@@ -12,20 +12,24 @@ type CartState = {
 };
 
 export const useCartStore = create<CartState>((set) => ({
-  cartItems: [
-    {
-      book: {
-        id: 1,
-        name: 'Sample Book',
-        price: 10,
-        author: 'Maksym Rybalko',
-        comments: [],
-      },
-      count: 2,
-    },
-  ],
+  cartItems: [],
   addToCart: (item: CartItem) =>
-    set((state) => ({ cartItems: [...state.cartItems, item] })),
+    set((state) => {
+      const existingItem = state.cartItems.find(
+        (i) => i.book.name === item.book.name,
+      );
+      if (existingItem) {
+        return {
+          cartItems: state.cartItems.map((i) =>
+            i.book.name === item.book.name
+              ? { ...i, count: i.count + item.count }
+              : i,
+          ),
+        };
+      } else {
+        return { cartItems: [...state.cartItems, item] };
+      }
+    }),
   deleteFromCart: (item: CartItem) =>
     set((state) => ({
       cartItems: state.cartItems.filter((i) => i.book.id !== item.book.id),
