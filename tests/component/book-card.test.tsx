@@ -56,6 +56,6 @@ describe('BookCard Component', () => {
     render(<BookCard book={book} />);
     const detailsLink = screen.getByRole('link', { name: /Детальніше/i });
 
-    expect(detailsLink).toHaveAttribute('href', `/books/${book.id}`);
+    expect(detailsLink).toHaveAttribute('href', `/${book.id}`);
   });
 });
