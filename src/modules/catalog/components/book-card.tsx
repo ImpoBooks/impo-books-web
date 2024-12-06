@@ -13,7 +13,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import Routes from '@/constants/routes';
 import { useCartStore } from '@/hooks/store/use-cart-store';
 import { Book } from '@/types/book';
 
@@ -51,10 +50,14 @@ const BookCard: FC<BookCardProps> = ({ book }) => {
         </p>
       </CardContent>
       <CardFooter className="flex gap-2 flex-wrap">
-        <Button onClick={handleQuickAdd} variant="outline">
+        <Button
+          onClick={handleQuickAdd}
+          data-testId={`add-to-cart-${book.id}`}
+          variant="outline"
+        >
           Додати в кошик
         </Button>
-        <Link href={Routes.BOOKS + `/${book.id}`}>
+        <Link href={`/${book.id}`}>
           <Button>Детальніше</Button>
         </Link>
       </CardFooter>

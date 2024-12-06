@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { FC, Suspense } from 'react';
+import { FC } from 'react';
 
 import ProductApi from '@/api/product-api';
 import BookPage from '@/modules/book/book-page';
@@ -23,15 +23,17 @@ export async function generateMetadata({
 }
 
 interface BookProps {
-  params: { bookId: string };
+  params: Promise<{ bookId: number }>;
 }
 
 const Book: FC<BookProps> = async ({ params }) => {
-  return (
-    <Suspense fallback={<div className="mx-auto">Завантаження...</div>}>
-      <BookPage bookId={params.bookId} />
-    </Suspense>
-  );
+  const bookId = (await params).bookId;
+  const book = await ProductApi.getBookById(bookId);
+  if (!book) {
+    return <div>Book not found</div>;
+  }
+
+  return <BookPage book={book} />;
 };
 
 export default Book;

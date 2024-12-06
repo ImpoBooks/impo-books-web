@@ -12,18 +12,7 @@ type CartState = {
 };
 
 export const useCartStore = create<CartState>((set) => ({
-  cartItems: [
-    {
-      book: {
-        id: 1,
-        name: 'Sample Book',
-        price: 10,
-        author: 'Maksym Rybalko',
-        comments: [],
-      },
-      count: 2,
-    },
-  ],
+  cartItems: [],
   addToCart: (item: CartItem) =>
     set((state) => {
       const existingItem = state.cartItems.find(
