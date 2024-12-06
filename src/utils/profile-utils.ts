@@ -1,5 +1,4 @@
 import ProfileAPI from '@/api/profile-api';
-import { toast } from '@/hooks/use-toast';
 
 export const handleDeleteProfile = async () => {
   try {
@@ -16,35 +15,5 @@ export const handleLogout = async () => {
     return { success: true };
   } catch {
     return { success: false };
-  }
-};
-
-export const handleChangeName = async (name: string) => {
-  try {
-    await ProfileAPI.changeName(name);
-    window.location.reload();
-  } catch {
-    toast({
-      title: 'Помилка',
-      description: 'Не вдалося змінити ім`я. Спробуйте ще раз.',
-      variant: 'destructive',
-    });
-  }
-};
-
-export const handleChangePassword = async (password: string) => {
-  try {
-    await ProfileAPI.changePassword(password);
-    toast({
-      title: 'Успішно',
-      description: 'Ваш пароль було змінено!',
-      variant: 'default',
-    });
-  } catch {
-    toast({
-      title: 'Помилка',
-      description: 'Не вдалося змінити пароль. Спробуйте ще раз.',
-      variant: 'destructive',
-    });
   }
 };

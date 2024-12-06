@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { PasswordData, passwordFormSchema } from '../constants';
 
+import ProfileAPI from '@/api/profile-api';
 import {
   AccordionContent,
   AccordionItem,
@@ -13,9 +14,10 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { passwordFormFields } from '@/constants/password-form-fields';
-import { handleChangePassword } from '@/utils/profile-utils';
+import { useToast } from '@/hooks/use-toast';
 
 const SecurityForm = () => {
+  const { toast } = useToast();
   const {
     register,
     handleSubmit,
@@ -28,8 +30,25 @@ const SecurityForm = () => {
   });
 
   const allFields = watch();
-  const allFieldsFilled = Object.values(allFields).every((value) => value);
+  const allFieldsFilled =
+    allFields && Object.values(allFields).every((value) => value);
 
+  const handleChangePassword = async (password: string) => {
+    try {
+      await ProfileAPI.changePassword(password);
+      toast({
+        title: 'Успішно',
+        description: 'Ваш пароль було змінено!',
+        variant: 'default',
+      });
+    } catch {
+      toast({
+        title: 'Помилка',
+        description: 'Не вдалося змінити пароль. Спробуйте ще раз.',
+        variant: 'destructive',
+      });
+    }
+  };
   return (
     <AccordionItem value="security">
       <AccordionTrigger>Безпека</AccordionTrigger>
