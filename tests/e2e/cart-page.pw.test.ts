@@ -1,10 +1,17 @@
 import { test, expect } from '@playwright/test';
 
-import Routes from '@/constants/routes';
-
 test.describe('Cart Page', () => {
+  const bookId = 10;
+  const bookPageUrl = `/${bookId}`;
+
   test.beforeEach(async ({ page }) => {
-    await page.goto(Routes.CART);
+    await page.goto(bookPageUrl);
+    const button = page.getByTestId('add-to-cart');
+    await button.click();
+    await page.waitForTimeout(1000);
+
+    const cartButton = page.getByTestId('Кошик');
+    await cartButton.click();
   });
 
   test('should display cart items correctly', async ({ page }) => {
@@ -15,11 +22,11 @@ test.describe('Cart Page', () => {
   test('should update item count when increment or decrement buttons are clicked', async ({
     page,
   }) => {
-    await expect(page.getByTestId('cart-item')).toHaveText('2');
+    await expect(page.getByTestId('cart-item')).toHaveText('1');
     await page.locator('button[aria-label="Increment"]').click();
-    await expect(page.getByTestId('cart-item')).toHaveText('3');
-    await page.locator('button[aria-label="Decrement"]').click();
     await expect(page.getByTestId('cart-item')).toHaveText('2');
+    await page.locator('button[aria-label="Decrement"]').click();
+    await expect(page.getByTestId('cart-item')).toHaveText('1');
   });
 
   test('should delete item from cart when delete button is clicked', async ({
@@ -30,7 +37,7 @@ test.describe('Cart Page', () => {
   });
 
   test('should display total amount correctly', async ({ page }) => {
-    await expect(page.getByTestId('cart-total')).toHaveText('Сума: $20.00');
+    await expect(page.getByTestId('cart-total')).toHaveText('Сума: $10.50');
   });
 
   test('should disable submit button if form fields are not filled', async ({

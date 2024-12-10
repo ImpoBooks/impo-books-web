@@ -6,8 +6,8 @@ import {
   waitFor,
 } from '@testing-library/react';
 
-import ContactForm from '@/components/contacts/contactForm';
 import { formItems } from '@/constants/form-items';
+import ContactForm from '@/modules/contacts/components/contact-form';
 
 const MockPage = () => (
   <div>
